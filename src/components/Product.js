@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import { NavLink, useParams } from "react-router-dom";
 
-const Product = () => {
+const Product = (products) => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState([]);
@@ -13,6 +13,10 @@ const Product = () => {
   const addProduct = (product) => {
     dispatch(addCart(product));
   };
+
+  // useEffect(() => {
+  //   localStorage.setItem("Cartdata", JSON.stringify(product));
+  // }, [product]);
 
   useEffect(() => {
     const getProduct = async () => {

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export default function Navbar() {
+export default function Navbar({ isUserLogin }) {
   const state = useSelector((state) => state.handleCart);
   return (
     <div>
@@ -46,12 +46,38 @@ export default function Navbar() {
               </li>
             </ul>
             <div className="buttons">
-              <NavLink to="/login" className="btn btn-outline-dark">
-                <i className="fa fa-sign-in me-1"></i> Login
-              </NavLink>
-              <NavLink to="/register" className="btn btn-outline-dark ms-2">
-                <i className="fa fa-user-plus me-1"></i> Register
-              </NavLink>
+              {isUserLogin ? (
+                <>
+                  <NavLink to="/login" className="btn btn-outline-dark">
+                    <i className="fa fa-sign-in me-1"></i> Login
+                  </NavLink>
+                  <NavLink to="/register" className="btn btn-outline-dark ms-2">
+                    <i className="fa fa-user-plus me-1"></i> Register
+                  </NavLink>
+                </>
+              ) : (
+                "Hi Sakshi"
+              )}
+              {!isUserLogin && (
+                <div className="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <span className="visually-hidden">Toggle Dropdown</span>
+                  </button>
+
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
               <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i> Cart (
                 {state.length})
