@@ -1,4 +1,3 @@
 [build]
-  base    = "docs"
-  publish = "_site"
-  command = "jekyll build"
+publish = “public/”
+command = “hugo”
